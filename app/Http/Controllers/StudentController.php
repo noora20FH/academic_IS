@@ -47,7 +47,12 @@ class StudentController extends Controller
         'Major' => 'required',
         'Address' => 'required',
         'Date_of_Birth' => 'required',
+        'Photo' => 'required'
         ]);
+
+        if ($request->file('Photo')) {
+            $photo_name = $request->file('Photo')->store('images', 'public');
+        }
 
         $student = new Student;
         $student->nim = $request->get('Nim');
@@ -56,7 +61,8 @@ class StudentController extends Controller
         $student->major = $request->get('Major');
         $student->Address = $request->get('Address');
         $student->Date_of_Birth = $request->get('Date_of_Birth');
-        $student -> save();
+        $student->photo = $photo_name;
+        //$student -> save();
 
         $class = new ClassModel;
         $class->id = $request->get('Class');

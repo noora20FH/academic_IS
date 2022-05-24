@@ -33,6 +33,7 @@
                 <th>Major</th>
                 <th>Address</th>
                 <th>Date of Birth</th>
+                <th>Photo</th>
                 <th width="300px">Action</th>
             </tr>
         @foreach ($paginate as $mhs)
@@ -43,6 +44,7 @@
             <td>{{ $mhs ->major }}</td>
             <td>{{ $mhs ->Address }}</td>
             <td>{{ $mhs ->Date_of_Birth }}</td>
+            <td><image width="50px" src="{{ asset('storage/'.$mhs->photo )}}" alt=""></td> <!--{{asset('storage/'.$article->featured_image)}}-->
             <td>
             <form action="{{ route('student.destroy',['student'=>$mhs->nim]) }}" method="POST">
                 <a class="btn btn-info" href="{{ route('student.show',$mhs->nim) }}">Show</a>
